@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+      <!-- 引入css文件，无顺序 -->
+    <link rel="stylesheet" href="themes/icon.css" type="text/css"></link>
+    <link rel="stylesheet" href="themes/default/easyui.css" type="text/css"></link>
+    
+  	<!-- 引入js文件，有顺序 -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+ 	<script type="text/javascript" src="js/easyui-lang-zh_CN.js"></script>
+ 
+  </head>
+  
+  <body>
+    <!-- 
+		id表示唯一定位这个标签，项目中提倡用id属性
+		class表示样式，在easyui中，样式都是以easyui-开头，后面跟着组件名，例如：panel
+		style表示css样式
+		title表示可折叠功能的面板的标题
+		collapsible=true可折叠
+		collapsible=false不可折叠
+	-->
+	<div 
+		id="p" 
+		class="easyui-panel" 
+		style="width:500px;height:200px;padding:10px;"   
+        title="我的面板" 
+        iconCls="icon-search" 
+        collapsible="true"> 
+          
+    	可折叠功能的面板<br/>
+    	可折叠功能的面板<br/>
+    	可折叠功能的面板<br/>
+    	
+	</div> 
+	
+	<table class="easyui-datagrid">   
+    <thead>   
+        <tr>   
+            <th data-options="field:'id'">编号</th>   
+            <th data-options="field:'name'">姓名</th>   
+            <th data-options="field:'sal'">薪水</th>   
+        </tr>   
+    </thead>   
+    <tbody>   
+        <tr>   
+            <td>001</td><td>张三</td><td>6000</td>   
+        </tr>   
+        <tr>   
+            <td>002</td><td>李四</td><td>8000</td>   
+        </tr>   
+    </tbody>   
+</table>  
+	
+	<!-- 
+		data-options是easyui特有的属性
+		url表示加载json的路径
+		fitColumns=true表示等分宽度，要配合width:100这个属性值(提倡)
+		fitColumns=false表示不等分宽度，这时由width:100这个属性值来决定宽度，默认为false
+		singleSelect=true表示可以选择表格中的一项
+		singleSelect=false表示可以选择表格中的多项，默认为false
+	-->
+	
+	<table 
+		style="width:610px;height:250px"
+		class="easyui-datagrid"
+		border="2"
+		align="center"
+		data-options="url:'data/datagrid_data.json',singleSelect:true"
+		
+	>   
+    <thead>   
+        <tr>   
+            <th data-options="field:'id',width:200">编号</th>   
+            <th data-options="field:'name',width:200">姓名</th>   
+            <th data-options="field:'sal',width:200">薪水</th>   
+        </tr>   
+    </thead>   
+ 
+</table>  
+	
+	
+	<table id="dg" ></table>
+	
+	<script>
+		$("#dg").datagrid({
+			url:"data/datagrid_data.json",
+			columns:[[
+				{field:'id',title:'编号',width:100},
+				{field:'name',title:'姓名',width:100},
+				{field:'sal',title:'薪水',width:100}
+			]],
+			fitColumns:true,
+			singleSelect:true,
+			pagination : true,
+			pageSize : 2,
+			pageList : [2]	
+		});
+	
+	
+	</script>
+	
+  </body>
+</html>
